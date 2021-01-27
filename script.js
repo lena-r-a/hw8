@@ -1,6 +1,7 @@
 let large_log=document.getElementById('logo');
 let small_log=document.getElementById('logo__inner')
 
+debugger;
 // large_log.style.backgroundColor='rgb(24,1,10)';
 
 function changeBgColor (color) {
@@ -16,19 +17,21 @@ function randomColor () {
     
     return 'rgb('+r+','+g+','+b+')';
 }
- var interval = setInterval(function(){changeBgColor(randomColor());},1000);
+
+ var interval = setInterval(function(){changeBgColor(randomColor());},5000);
 
 
 small_log.addEventListener('mouseover',function(){
-    
-    
+       
     changeBgColor(randomColor());
     large_log.classList.remove('trans');
-    clearInterval(interval)})
+    clearInterval(interval);
+    interval=null;})
 
     small_log.addEventListener('mouseout',function() {
         large_log.classList.add('trans');
-        setInterval(function(){changeBgColor(randomColor());},5000);
+        if (interval==null){
+        interval = setInterval(function(){changeBgColor(randomColor());},5000);};
     })
 
 
